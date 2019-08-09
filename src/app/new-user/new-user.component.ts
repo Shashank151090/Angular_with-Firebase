@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { AvatarDialogComponent } from "../avatar-dialog/avatar-dialog.component";
 import { Router } from '@angular/router';
@@ -57,10 +57,20 @@ IsAccepted:number=0;
       gender: ['', Validators.required],
       city: ['', Validators.required],
       email: ['', Validators.required],
+      phone: this.fb.array([this.createItem()])
       // isAccepted: ['']
 
 
     });
+  }
+
+  createItem() {
+    return this.fb.group({
+      phone: ['']
+    })
+  }
+  addNew() {
+    (this.exampleForm.controls['phone'] as FormArray).push(this.createItem())
   }
 
   onChange(event:any)  

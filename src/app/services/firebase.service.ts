@@ -49,7 +49,8 @@ export class FirebaseService {
       avatar: avatar,
       gender: value.gender,
       city: value.city,
-      email: value.email
+      email: value.email,
+      phone: value.phone
     });
   }
 }

@@ -32,6 +32,17 @@
               <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
             </ng-container>
           </div>
+
+          <div class="form-group" formArrayName="phone"
+          *ngFor="let item of exampleForm.controls['phone'].controls; let i = index">
+          <div [formGroupName]="i">
+              <mat-form-field class="input-style">
+            <input matInput placeholder="Phone No" formControlName='phone'>
+          </mat-form-field>
+          </div>
+        </div>
+
+          <button mat-raised-button type="button" (click)="addNew()">Add New No</button>
           
           <div class="form-group">
             <mat-form-field class="input-style">  
@@ -41,6 +52,14 @@
                   <span *ngIf="!exampleForm.get('email').valid && exampleForm.get('email').touched">Enter proper Email !!!</span>  
               </mat-error>  
           </mat-form-field> 
+          </div>
+
+          <div class="form-group">
+          <mat-form-field class="input-style">
+              <input matInput [matDatepicker]="picker" placeholder="Date of birth">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
 
           <div class="form-group">
@@ -67,8 +86,6 @@
               <mat-select formControlName="city" placeholder="Select city">  
                   <mat-option>-- Select Any --</mat-option>  
                   <mat-option *ngFor="let city of cities" [value]="city.name" >{{city.name}}</mat-option>  
-                  <!-- <mat-option value="C#Corner">C#Corner</mat-option>  
-                  <mat-option value="C#Corner">C#Corner</mat-option>   -->
               </mat-select>  
               <mat-error>  
                   <span *ngIf="!exampleForm.get('city').valid && exampleForm.get('city').touched">Please select any item !!!</span>  
